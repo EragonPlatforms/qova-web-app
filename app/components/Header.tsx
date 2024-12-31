@@ -11,10 +11,15 @@ function Header() {
   }
   // Show a button to close the chat window when clicked.
   return (
-    <header className="flex justify-between bg-vsblue text-white items-center h-[10vh] px-10">
-      <Link href="/">
-        <img src="/logo.svg" alt="logo" />
-      </Link>
+    <header className=" shadow-lg  bg-white  ">
+      <div className="flex max-w-7xl w-[90%] mx-auto justify-between items-center h-[10vh]">
+        <Link href="/">
+          <img
+            src="https://res.cloudinary.com/karotcloud/image/upload/v1735635970/Qova%20ai/logo_ugstcr.svg"
+            alt="logo"
+          />
+        </Link>
+      </div>
     </header>
   );
 }
