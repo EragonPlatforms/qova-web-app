@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="h-[20vh] py-14  bg-white">
       <div className="space-y-5 bg-gradient-to-r from-qovablue to-qovabluelight pt-1">
         <div className="w-full bg-white py-8">
-          <div className="flex justify-between items-center max-w-7xl w-[90%] mx-auto bg-white">
+          <div className="flex md:flex-row flex-col gap-4 md:justify-between items-center max-w-7xl w-[90%] mx-auto bg-white">
             <Link href="/">
               <img
                 src="https://res.cloudinary.com/karotcloud/image/upload/v1735635970/Qova%20ai/logo_ugstcr.svg"
