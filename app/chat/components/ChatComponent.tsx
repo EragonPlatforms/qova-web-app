@@ -16,7 +16,12 @@ export default function ChatPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    queryClient.resetQueries({ queryKey: ["messages"] });
+  }, []);
+
+  useEffect(() => {
     const storedUserName = localStorage.getItem("userName");
+
     if (!storedUserName) {
       router.push("/login");
     } else {
@@ -63,7 +68,7 @@ export default function ChatPage() {
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
-
+    queryClient.invalidateQueries({ queryKey: ["messages"] });
     if (!input.trim()) return;
 
     const userId = localStorage.getItem("userId");
@@ -83,11 +88,10 @@ export default function ChatPage() {
   };
 
   const PROMPT_SUGGESTIONS = [
-    { text: "What are examples of CSAM?", icon: "😉" },
-    { text: "What is Cyber Bullying?", icon: "🥷" },
-    { text: "Who is a bully?", icon: "🤣" },
     { text: "How do I stay safe on the Internet?", icon: "🦺" },
-    { text: "What is safer gambling?", icon: "🎲" },
+    { text: "What should I do if I see harmful content online?", icon: "😉" },
+    { text: "What are the signs of Cyber Bullying?", icon: "🥷" },
+    { text: "How can I manage my screen time better?", icon: "💻" },
   ];
 
   const handleSuggestionClick = (text: string) => {
@@ -110,21 +114,20 @@ export default function ChatPage() {
 
   return (
     <div className="max-w-4xl mx-auto text-center space-y-4 py-4 px-6 flex flex-col h-[90vh] items-center overflow-y-scroll">
-      <div className="bg-white text-center mx-auto space-y-6 px-6 py-4 rounded-lg ">
-        <h1 className="text-4xl">
-          <span className="bg-gradient-to-r from-qovablue to-qovabluelight inline-block text-transparent bg-clip-text">
+      <div className="bg-white w-full text-center mx-auto space-y-6 px-6 py-4 rounded-lg ">
+        <h1 className="md:text-4xl text-2xl">
+          <span className="bg-gradient-to-r from-[#062729] to-qovablue  inline-block text-transparent bg-clip-text">
             Hey {userName}!
           </span>
           <span> 🎉</span>
-          <span className="bg-gradient-to-r from-qovablue to-qovabluelight inline-block text-transparent bg-clip-text">
+          <span className="bg-gradient-to-r from-qovablue to-[#062729] inline-block text-transparent bg-clip-text">
             Welcome to Qova
           </span>
           <span> 🙌</span>
         </h1>
-        <p>
-          I'm chatVSAFE, here to create a secure, supportive online space for
-          young people while equipping educators with the tools to lead
-          confidently in the digital world.
+        <p className="text-sm md:text-normal">
+          I am excited to provide you personalized guidance and support for your
+          digital wellbeing
         </p>
       </div>
       <div className="py-6 space-y-6 w-full overflow-y-scroll">
@@ -173,8 +176,8 @@ export default function ChatPage() {
         </div>
 
         {showSuggestions && (
-          <div className="mb-6 w-full">
-            <h3 className="text-sm text-left font-medium mb-2">
+          <div className="mb-6 md:w-[80%] mx-auto">
+            <h3 className="text-xs text-left font-medium mb-2">
               Prompt Ideas 💡
             </h3>
             <div className="flex flex-wrap gap-4">
@@ -182,7 +185,7 @@ export default function ChatPage() {
                 <button
                   key={index}
                   type="button"
-                  className="bg-white border border-vsblack rounded-full py-2 px-5"
+                  className="bg-white text-xs md:text-normal border border-vsblack rounded-full py-2 md:px-5 px-2"
                   onClick={() => handleSuggestionClick(prompt.text)}
                 >
                   {prompt.icon} {prompt.text}
@@ -192,7 +195,7 @@ export default function ChatPage() {
           </div>
         )}
       </div>
-      <div className="w-[90%] max-w-4xl mx-auto fixed bottom-3">
+      <div className="w-full mx-auto sticky bottom-4">
         <p className="ml-5 text-left  mb-2">Ask Qova 😊</p>
         <form
           onSubmit={handleSend}
@@ -203,13 +206,13 @@ export default function ChatPage() {
             onChange={handleChange}
             placeholder="Type your question here"
             disabled={isSending}
-            className="grow px-8 text-xl py-4 bg-transparent placeholder:italic placeholder:text-slate-400 focus:outline-none focus:ring-blue-950"
+            className="grow px-8 md:text-xl py-4 bg-transparent placeholder:italic placeholder:text-slate-400 focus:outline-none focus:ring-blue-950"
           />
           <button
             type="submit"
             disabled={isSending || !input.trim()}
             className={`${
-              isSending ? "bg-blue-800 cursor-wait" : ""
+              isSending ? "text-qovabluelight cursor-wait" : ""
             } text-vsblue cursor-pointer`}
           >
             {""}
@@ -219,4 +222,7 @@ export default function ChatPage() {
       </div>
     </div>
   );
+}
+function getQueryData<T>(arg0: string[]) {
+  throw new Error("Function not implemented.");
 }

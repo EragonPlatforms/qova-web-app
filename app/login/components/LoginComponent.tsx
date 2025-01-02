@@ -40,11 +40,11 @@ export default function Onboard() {
       >
         <h2 className="text-3xl font-semibold ">
           {" "}
-          <span className="bg-gradient-to-r from-qovablue to-qovabluelight inline-block text-transparent bg-clip-text ">
+          <span className="bg-gradient-to-r from-[#062729] to-qovablue inline-block text-transparent bg-clip-text ">
             Hello There!{" "}
           </span>
           <span className="bg-none"> 🎉 </span>
-          <span className="bg-gradient-to-r from-qovablue to-qovabluelight inline-block text-transparent bg-clip-text ">
+          <span className="bg-gradient-to-r from-qovablue to-[#062729] inline-block text-transparent bg-clip-text ">
             Welcome to Qova!
           </span>
           <span>🙌</span>
@@ -70,7 +70,7 @@ export default function Onboard() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="sm:grow px-8 py-4 sm:bg-transparent bg-white border border-stone-400 sm:border-0 rounded-full placeholder:italic placeholder:text-slate-400 focus:outline-none focus:ring-blue-950"
-            placeholder="What name should I call you?"
+            placeholder="Type your name here..."
             required
           />
 
