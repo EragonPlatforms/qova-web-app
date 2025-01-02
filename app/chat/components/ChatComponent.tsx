@@ -206,7 +206,7 @@ export default function ChatPage() {
           />
           <button
             type="submit"
-            disabled={isSending || !input.trim()}
+            disabled={isSending}
             className={`${
               isSending ? "text-qovabluelight cursor-wait" : ""
             } text-vsblue cursor-pointer`}
