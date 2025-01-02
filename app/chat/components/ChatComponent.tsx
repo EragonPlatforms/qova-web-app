@@ -16,10 +16,6 @@ export default function ChatPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    queryClient.resetQueries({ queryKey: ["messages"] });
-  }, []);
-
-  useEffect(() => {
     const storedUserName = localStorage.getItem("userName");
 
     if (!storedUserName) {

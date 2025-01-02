@@ -5,18 +5,22 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createUser as createUserApi } from "@/api/api";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function Onboard() {
   const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const queryClient = useQueryClient();
+
 
   const { isPending: creatingUser, mutate: createUser } = useMutation({
     mutationFn: createUserApi,
     onSuccess: ({ user_id: id }) => {
       localStorage.setItem("userId", id);
       localStorage.setItem("userName", name);
+      queryClient.resetQueries({ queryKey: ["messages"] });
+
       router.push("/chat");
     },
     onError: (error) => {
