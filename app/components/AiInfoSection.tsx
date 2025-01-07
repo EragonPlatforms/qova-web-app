@@ -1,11 +1,26 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import CustomLink from "./CustomLink";
 
+import "aos/dist/aos.css";
+import AOS from "aos";
+
 const AiInfoSection = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+      easing: "ease-in-out",
+    });
+  }, []);
+
   return (
     <section className="max-w-5xl w-[90%] mx-auto text-center flex flex-col md:pb-14 pb-7 justify-center items-center min-h-[40vh]">
-      <div className="aspect-video relative md:w-[80%] w-full">
+      <div
+        data-aos="fade-up"
+        className="aspect-video relative md:w-[80%] w-full"
+      >
         <Image
           className="object-contain"
           src={

@@ -1,11 +1,12 @@
 "use client";
 
-import Image from "next/image";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+
 import { createUser as createUserApi } from "@/api/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 export default function Onboard() {
   const [name, setName] = useState("");
@@ -13,6 +14,12 @@ export default function Onboard() {
   const router = useRouter();
   const queryClient = useQueryClient();
 
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+      easing: "ease-in-out",
+    });
+  }, []);
 
   const { isPending: creatingUser, mutate: createUser } = useMutation({
     mutationFn: createUserApi,
@@ -39,6 +46,7 @@ export default function Onboard() {
     <main className="w-full h-screen pt-[20vh] space-y-6 px-4">
       {" "}
       <div
+        data-aos="fade-down"
         className="max-w-4xl mx-auto  bg-white rounded-xl text-center space-y-4 py-4 px-6 flex flex-col items-center
      "
       >
@@ -62,7 +70,7 @@ export default function Onboard() {
         </p>
         {/* <Image src={"/amico.svg"} width={232} height={232} alt="Illustration" /> */}
       </div>
-      <div className="sm:max-w-4xl w-full mx-auto ">
+      <div data-aos="fade-up" className="sm:max-w-4xl w-full mx-auto ">
         <p className="text-sm mb-2 ml-5">What name should I call you? 😊</p>
         <form
           onSubmit={handleSubmit}

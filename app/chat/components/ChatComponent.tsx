@@ -4,9 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { sendMessage } from "@/api/api";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { Icon } from "@iconify/react";
 import { ChatResponse } from "@/types/user";
 import ChatIcon from "@/app/chat/components/ChatIcon";
+import UserIcon from "@/app/chat/components/UserIcon";
+
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 export default function ChatPage() {
   const [userName, setUserName] = useState<string | null>(null);
@@ -14,6 +18,13 @@ export default function ChatPage() {
   const queryClient = useQueryClient();
   const router = useRouter();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+      easing: "ease-in-out",
+    });
+  }, []);
 
   useEffect(() => {
     const storedUserName = localStorage.getItem("userName");
@@ -84,10 +95,26 @@ export default function ChatPage() {
   };
 
   const PROMPT_SUGGESTIONS = [
-    { text: "How do I stay safe on the Internet?", icon: "🦺" },
-    { text: "What should I do if I see harmful content online?", icon: "😉" },
-    { text: "What are the signs of Cyber Bullying?", icon: "🥷" },
-    { text: "How can I manage my screen time better?", icon: "💻" },
+    {
+      text: "How do I stay safe on the Internet?",
+      icon: "🦺",
+      duration: "900",
+    },
+    {
+      text: "What should I do if I see harmful content online?",
+      icon: "😉",
+      duration: "1000",
+    },
+    {
+      text: "What are the signs of Cyber Bullying?",
+      icon: "🥷",
+      duration: "1100",
+    },
+    {
+      text: "How can I manage my screen time better?",
+      icon: "💻",
+      duration: "1200",
+    },
   ];
 
   const handleSuggestionClick = (text: string) => {
@@ -99,18 +126,9 @@ export default function ChatPage() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  function UserIcon() {
-    const userIcon = userName?.substring(0, 2).toUpperCase();
-    return (
-      <span className="w-12 h-12 rounded-full grid place-content-center  border-2 bg-white text-vspurple border-vspurple">
-        {userIcon}
-      </span>
-    );
-  }
-
   return (
     <div className="max-w-4xl mx-auto text-center space-y-4 py-4 px-6 flex flex-col h-[90vh] items-center overflow-y-scroll">
-      <div className="bg-white w-full text-center mx-auto space-y-6 px-6 py-4 rounded-lg ">
+      <div data-aos="fade-down" className="bg-white w-full text-center mx-auto space-y-6 px-6 py-4 rounded-lg ">
         <h1 className="md:text-4xl text-2xl">
           <span className="bg-gradient-to-r from-[#062729] to-qovablue  inline-block text-transparent bg-clip-text">
             Hey {userName}!
@@ -128,9 +146,9 @@ export default function ChatPage() {
       </div>
       <div className="py-6 space-y-6 w-full overflow-y-scroll">
         <div className="space-y-4 border-b">
-          {messages.map((message, index) => (
+          {messages.map((message) => (
             <div
-              key={index}
+              key={message.content}
               className={`flex ${
                 message.role === "assistant" ? "justify-start" : "justify-end"
               }`}
@@ -140,7 +158,11 @@ export default function ChatPage() {
                   message.role === "user" ? "flex-row-reverse" : ""
                 } items-start gap-2`}
               >
-                {message.role === "user" ? <UserIcon /> : <ChatIcon />}
+                {message.role === "user" ? (
+                  <UserIcon userName={userName ?? ""} />
+                ) : (
+                  <ChatIcon />
+                )}
                 <span
                   className={`rounded-lg shadow-lg  text-left px-2 py-2 ${
                     message.role === "user"
@@ -153,12 +175,14 @@ export default function ChatPage() {
               </div>
             </div>
           ))}
-
           {isSending && (
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-qovablue rounded-full animate-bounce delay-100"></div>
-              <div className="w-2 h-2 bg-qovablue rounded-full animate-bounce delay-200"></div>
-              <div className="w-2 h-2 bg-qovablue rounded-full animate-bounce delay-300"></div>
+            <div className="flex justify-start items-start gap-2">
+              <ChatIcon />
+              <div className="bg-vsblue/10 text-vsblack rounded-lg shadow-lg px-4 py-3 flex items-center gap-2">
+                <div className="w-2 h-2 bg-qovablue rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-qovablue rounded-full animate-pulse delay-300"></div>
+                <div className="w-2 h-2 bg-qovablue rounded-full animate-pulse delay-500"></div>
+              </div>
             </div>
           )}
 
@@ -173,13 +197,15 @@ export default function ChatPage() {
 
         {showSuggestions && (
           <div className="mb-6 md:w-[80%] mx-auto">
-            <h3 className="text-xs text-left font-medium mb-2">
+            <h3 data-aos="fade-left" className="text-xs text-left font-medium mb-2">
               Prompt Ideas 💡
             </h3>
             <div className="flex flex-wrap gap-4">
-              {PROMPT_SUGGESTIONS.map((prompt, index) => (
+              {PROMPT_SUGGESTIONS.map((prompt) => (
                 <button
-                  key={index}
+                  data-aos="fade-left"
+                  data-aos-duration={prompt.duration}
+                  key={prompt.text}
                   type="button"
                   className="bg-white text-xs md:text-normal border border-vsblack rounded-full py-2 md:px-5 px-2"
                   onClick={() => handleSuggestionClick(prompt.text)}
@@ -191,7 +217,7 @@ export default function ChatPage() {
           </div>
         )}
       </div>
-      <div className="w-full mx-auto sticky bottom-4">
+      <div data-aos="fade-up" className="w-full mx-auto sticky bottom-4">
         <p className="ml-5 text-left  mb-2">Ask Qova 😊</p>
         <form
           onSubmit={handleSend}
@@ -218,7 +244,4 @@ export default function ChatPage() {
       </div>
     </div>
   );
-}
-function getQueryData<T>(arg0: string[]) {
-  throw new Error("Function not implemented.");
 }

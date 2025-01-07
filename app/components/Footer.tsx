@@ -1,11 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 const Footer = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+      easing: "ease-in-out",
+    });
+  }, []);
   return (
-    <footer className="h-[20vh] py-14  bg-white">
-      <div className="space-y-5 bg-gradient-to-r from-qovablue to-qovabluelight pt-1">
+    <footer data-aos="zoom-out" className="h-[20vh] py-14  bg-white">
+      <div data-aos="zoom-out" className="space-y-5 bg-gradient-to-r from-qovablue to-qovabluelight pt-1">
         <div className="w-full bg-white py-8">
           <div className="flex md:flex-row flex-col gap-4 md:justify-between items-center max-w-7xl w-[90%] mx-auto bg-white">
             <Link href="/">
@@ -48,7 +58,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p className="text-center pb-8">Powered by VirtuallySafe.org</p>
+      <p  className="text-center pb-8">
+        Powered by VirtuallySafe.org
+      </p>
     </footer>
   );
 };
