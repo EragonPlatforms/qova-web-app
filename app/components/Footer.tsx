@@ -35,12 +35,22 @@ const Footer = () => {
                     Responsible AI Policy
                   </Link>
                 </h4>
-                <ul>
-                  <li>Purpose</li>
-                  <li>Guiding Principles</li>
-                  <li>Policy Commitments</li>
-                  <li>Governance Structure</li>
-                  <li>Review and Updates</li>
+                <ul className=" list-disc">
+                  <li className=" cursor-pointer">
+                    <Link href={"/privacy-policy"}>Purpose</Link>
+                  </li>
+                  <li className=" cursor-pointer">
+                    <Link href={"/privacy-policy"}>Guiding Principles</Link>
+                  </li>
+                  <li className=" cursor-pointer">
+                    <Link href={"/privacy-policy"}>Policy Commitments</Link>
+                  </li>
+                  <li className=" cursor-pointer">
+                    <Link href={"/privacy-policy"}>Governance Structure</Link>
+                  </li>
+                  <li className=" cursor-pointer">
+                    <Link href={"/privacy-policy"}>Review and Updates</Link>
+                  </li>
                 </ul>
               </div>
               <div className="">
