@@ -3,14 +3,13 @@ import { Palanquin } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import QueryClientWrapper from "./context/QueryClientWrapper";
+import Footer from "./components/Footer";
 
 const palanquin = Palanquin({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "600", "700"],
-
 });
-
 
 export const metadata: Metadata = {
   title: {

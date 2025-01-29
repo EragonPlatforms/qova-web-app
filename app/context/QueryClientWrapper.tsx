@@ -12,7 +12,7 @@ const queryClient = new QueryClient({
   },
 });
 
-function QueryClientWrapper({ children }: { children: ReactNode }) {
+function QueryClientWrapper({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />

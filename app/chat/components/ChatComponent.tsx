@@ -128,7 +128,10 @@ export default function ChatPage() {
 
   return (
     <div className="max-w-4xl mx-auto text-center space-y-4 py-4 px-6 flex flex-col h-[90vh] items-center overflow-y-scroll">
-      <div data-aos="fade-down" className="bg-white w-full text-center mx-auto space-y-6 px-6 py-4 rounded-lg ">
+      <div
+        data-aos="fade-down"
+        className="bg-white w-full text-center mx-auto space-y-6 px-6 py-4 rounded-lg "
+      >
         <h1 className="md:text-4xl text-2xl">
           <span className="bg-gradient-to-r from-[#062729] to-qovablue  inline-block text-transparent bg-clip-text">
             Hey {userName}!
@@ -197,7 +200,10 @@ export default function ChatPage() {
 
         {showSuggestions && (
           <div className="mb-6 md:w-[80%] mx-auto">
-            <h3 data-aos="fade-left" className="text-xs text-left font-medium mb-2">
+            <h3
+              data-aos="fade-left"
+              className="text-xs text-left font-medium mb-2"
+            >
               Prompt Ideas 💡
             </h3>
             <div className="flex flex-wrap gap-4">

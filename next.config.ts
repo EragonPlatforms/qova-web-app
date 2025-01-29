@@ -17,8 +17,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination:
-          "http://qova-api-5d4001-f78a7e-195-110-59-69.traefik.me/:path*",
+        destination: `${process.env.NEXT_PUBLIC_BASE_URL}/:path*`,
       },
     ];
   },

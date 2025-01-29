@@ -47,7 +47,7 @@ export async function sendMessage({
     });
 
     // Ensure data exists and matches the expected format
-    if (!data || !data.content) {
+    if (!data?.content) {
       throw new Error("Invalid response from the server.");
     }
 
