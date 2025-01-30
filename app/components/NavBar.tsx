@@ -8,10 +8,11 @@ type NavLinkTypes = {
 
 const navLinkData: NavLinkTypes[] = [
   { href: "/", name: "Home" },
-  { href: "/resources", name: "Resources" },
-  { href: "/games", name: "Games" },
-  { href: "/news", name: "News" },
-  { href: "/forum", name: "Forum" },
+  { href: "/privacy-policy", name: " AI Policy" },
+  // { href: "/resources", name: "Resources" },
+  // { href: "/games", name: "Games" },
+  // { href: "/news", name: "News" },
+  // { href: "/forum", name: "Forum" },
 ];
 
 function NavLink({

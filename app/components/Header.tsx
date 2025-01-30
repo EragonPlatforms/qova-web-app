@@ -25,9 +25,9 @@ function Header() {
   }
 
   return (
-    <header className="shadow-lg bg-white overflow-x-hidden">
+    <header className="shadow-lg bg-white py-2 md:py-0  overflow-x-hidden">
       <div className="flex max-w-7xl w-[90%] relative mx-auto justify-between items-center md:min-h-[10vh] h-[7vh]">
-        <Link href="/" className="inline-flex basis-1/3 md:basis-auto">
+        <Link href="/" className="inline-flex md:basis-auto ">
           <Image
             src="https://res.cloudinary.com/karotcloud/image/upload/v1738159105/QOVA_LOGO_1_vjroyx.png"
             alt="logo"
