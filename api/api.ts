@@ -1,9 +1,11 @@
 import axios from "axios";
 import { ChatRequest, ChatResponse, UserResponse } from "@/types/user";
 
+const baseApi = process.env.NEXT_PUBLIC_BASE_URL;
+
 // Create an Axios instance for API requests
 const api = axios.create({
-  baseURL: "/api", // API base URL
+  baseURL: baseApi, // API base URL
   headers: {
     "Content-Type": "application/json", // Default headers for requests
   },
@@ -19,13 +21,12 @@ const api = axios.create({
 export async function createUser(name: string): Promise<UserResponse> {
   try {
     const { data } = await api.post<UserResponse>("/user", { name });
-    console.log(data); // Debugging statement; remove or replace in production
     return data;
   } catch (error: any) {
-    console.error("Error in createUser:", error); // Log the error
+    console.error("Error in createUser:", error);
     const errorMessage =
       error.response?.data?.message || "An unexpected error occurred";
-    throw new Error(errorMessage); // Throw a descriptive error
+    throw new Error(errorMessage);
   }
 }
 

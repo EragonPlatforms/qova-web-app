@@ -32,6 +32,7 @@ export default function Onboard() {
     },
     onError: (error) => {
       console.error("Error creating user:", error);
+      setError(`Something went wrong: ${error.message}`);
     },
   });
 
@@ -97,7 +98,7 @@ export default function Onboard() {
           </button>
         </form>
       </div>
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-red-500 text-center">{error}</p>}
     </main>
   );
 }
