@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Palanquin } from "next/font/google";
+import { Fredoka } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
-import QueryClientWrapper from "./context/QueryClientWrapper";
-import Footer from "./components/Footer";
+import Header from "./_components/header";
+import QueryClientWrapper from "./_context/QueryClientWrapper";
+import Footer from "./_components/footer";
 
-const palanquin = Palanquin({
+const fredoka = Fredoka({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "600", "700"],
@@ -27,13 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${palanquin.className} min-h-screen w-full  `}>
+      <body className={`${fredoka.className} min-h-screen w-full  `}>
         <Header />
-        <QueryClientWrapper>
-          <div className="bg-[url('https://res.cloudinary.com/karotcloud/image/upload/v1735662951/Qova%20ai/blur-bg_pnepxx.svg')] bg-cover ">
-            {children}
-          </div>
-        </QueryClientWrapper>
+        <QueryClientWrapper>{children}</QueryClientWrapper>
       </body>
     </html>
   );

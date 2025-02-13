@@ -1,5 +1,5 @@
 import React from "react";
-import LoginComponent from "./components/LoginComponent";
+import LoginComponent from "./components/login-component";
 
 import type { Metadata } from "next";
 
