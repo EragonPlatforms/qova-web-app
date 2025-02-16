@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
-import { sendMessage } from "@/api/api";
+import { sendMessage } from "@/app/api/api";
 import { ChatResponse } from "@/types/user";
 
 import "aos/dist/aos.css";
@@ -15,7 +15,7 @@ import Messages from "./messages";
 
 export default function ChatPage() {
   const [userName, setUserName] = useState<string | null>(null);
-  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(true);
   const queryClient = useQueryClient();
   const router = useRouter();
   const messagesEndRef = useRef<HTMLDivElement>(null);

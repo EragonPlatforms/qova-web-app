@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import { createUser as createUserApi } from "@/api/api";
+import { createUser as createUserApi } from "@/app/api/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import "aos/dist/aos.css";
 import AOS from "aos";

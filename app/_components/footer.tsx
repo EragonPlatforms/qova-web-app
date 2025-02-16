@@ -98,9 +98,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p className="w-full text-center py-6 bg-qovapink text-white">
+      {/* <p className="w-full text-center py-6 bg-qovapink text-white">
         Powered by VirtuallySafe.org
-      </p>
+      </p> */}
     </footer>
   );
 };

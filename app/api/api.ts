@@ -1,41 +1,34 @@
 import axios from "axios";
 import { ChatRequest, ChatResponse, UserResponse } from "@/types/user";
 
-const baseApi = process.env.NEXT_PUBLIC_BASE_URL;
-
-// Create an Axios instance for API requests
 const api = axios.create({
-  baseURL: baseApi, // API base URL
+  baseURL: "/api/proxy", // Calls Next.js proxy
   headers: {
-    "Content-Type": "application/json", // Default headers for requests
+    "Content-Type": "application/json",
   },
 });
 
 /**
- * Creates a new user in the server.
- *
+ * Creates a new user (Frontend: /login → Backend: /user)
  * @param name - The name of the new user.
  * @returns A promise that resolves to the newly created user's response.
- * @throws An error if the request fails.
  */
 export async function createUser(name: string): Promise<UserResponse> {
   try {
-    const { data } = await api.post<UserResponse>("/user", { name });
+    const { data } = await api.post<UserResponse>("/login", { name }); // Using /login
     return data;
   } catch (error: any) {
     console.error("Error in createUser:", error);
-    const errorMessage =
-      error.response?.data?.message || "An unexpected error occurred";
-    throw new Error(errorMessage);
+    throw new Error(
+      error.response?.data?.message || "An unexpected error occurred"
+    );
   }
 }
 
 /**
- * Sends a message to the chat API.
- *
+ * Sends a message to the chat API (/chat)
  * @param request - The chat request containing the user ID and question.
  * @returns A promise that resolves to the chat response from the server.
- * @throws An error if the request fails.
  */
 export async function sendMessage({
   question,
@@ -47,7 +40,6 @@ export async function sendMessage({
       user_id,
     });
 
-    // Ensure data exists and matches the expected format
     if (!data?.content) {
       throw new Error("Invalid response from the server.");
     }
@@ -55,8 +47,8 @@ export async function sendMessage({
     return data;
   } catch (error: any) {
     console.error("Error in sendMessage:", error);
-    const errorMessage =
-      error.response?.data?.message || "An unexpected error occurred";
-    throw new Error(errorMessage);
+    throw new Error(
+      error.response?.data?.message || "An unexpected error occurred"
+    );
   }
 }
