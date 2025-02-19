@@ -107,7 +107,7 @@ export default function ChatPage() {
   return (
     <div className="bg-[url('https://res.cloudinary.com/karotcloud/image/upload/v1739368923/blur-bg_zkhxdg.svg')] bg-cover w-full h-dvh">
       <div className="max-w-4xl mx-auto text-center space-y-4 py-4 px-6 flex flex-col h-[90vh] items-center overflow-y-scroll  pt-[20vh]">
-        <div className="py-6 space-y-6 w-full overflow-y-scroll">
+        <div className="py-6 space-y-6 w-full overflow-y-scroll no-scrollbar">
           <div className="space-y-4 border-b">
             {showSuggestions && <ChatHeader userName={userName ?? ""} />}
             <Messages
