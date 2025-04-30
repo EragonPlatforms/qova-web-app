@@ -42,7 +42,7 @@ function Header() {
         <NavBar isOpen={isNavOpen} closeNav={handleIsOpen} />
 
         <div className="md:block hidden">
-          <CustomLink />
+          <CustomLink extraStyles="!w-fit !px-[2.5rem]" />
         </div>
 
         {/* Mobile Menu Button */}

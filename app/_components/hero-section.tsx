@@ -19,7 +19,7 @@ const Hero = () => {
       <div className="absolute inset-0 -z-10">
         <video
           className="w-full h-full object-cover"
-          src="https://res.cloudinary.com/karotcloud/video/upload/v1739265172/Qova%20ai/hero_sjlhwg.mp4"
+          src="https://res.cloudinary.com/karotcloud/video/upload/f_auto,q_auto,h_720/v1739265172/Qova%20ai/hero_sjlhwg.mp4"
           autoPlay
           muted
           loop
